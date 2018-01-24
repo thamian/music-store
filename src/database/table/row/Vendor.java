@@ -1,14 +1,17 @@
-package model;
+package database.table.row;
 
-public class Vendor {
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
+public class Vendor implements TableRow {
     private final int id;
     private final String name;
     private final String phoneNumber;
     private final String email;
     private final String nip;
     private final String regon;
-    private final Address address;
+    private final int addressId;
 
     private Vendor(final Builder builder) {
         this.id = builder.id;
@@ -17,9 +20,10 @@ public class Vendor {
         this.email = builder.email;
         this.nip = builder.nip;
         this.regon = builder.regon;
-        this.address = builder.address;
+        this.addressId = builder.addressId;
     }
 
+    @Override
     public int getId() {
         return id;
     }
@@ -44,8 +48,8 @@ public class Vendor {
         return regon;
     }
 
-    public Address getAddress() {
-        return address;
+    public int getAddressId() {
+        return addressId;
     }
 
     public static class Builder {
@@ -55,7 +59,7 @@ public class Vendor {
         private String email;
         private String nip;
         private String regon;
-        private Address address;
+        private int addressId;
 
         public Builder(final int id) {
             this.id = id;
@@ -86,13 +90,38 @@ public class Vendor {
             return this;
         }
 
-        public Builder address(final Address address) {
-            this.address = address;
+        public Builder addressId(final int addressId) {
+            this.addressId = addressId;
             return this;
         }
 
         public Vendor build() {
             return new Vendor(this);
         }
+    }
+
+    @Override
+    public PreparedStatement prepareInsertStatement(Connection connection, String sql) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1, name);
+        preparedStatement.setString(2, phoneNumber);
+        preparedStatement.setString(3, email);
+        preparedStatement.setString(4, nip);
+        preparedStatement.setString(5, regon);
+        preparedStatement.setInt(6, addressId);
+        return preparedStatement;
+    }
+
+    @Override
+    public PreparedStatement prepareUpdateStatement(Connection connection, String sql) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1, name);
+        preparedStatement.setString(2, phoneNumber);
+        preparedStatement.setString(3, email);
+        preparedStatement.setString(4, nip);
+        preparedStatement.setString(5, regon);
+        preparedStatement.setInt(6, addressId);
+        preparedStatement.setInt(7, id);
+        return preparedStatement;
     }
 }
