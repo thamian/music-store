@@ -10,8 +10,8 @@ import java.util.ArrayList;
 
 public class Products implements Table {
     @Override
-    public ArrayList<TableRow> toList(Database database, ResultSet r) throws SQLException {
-        ArrayList<TableRow> products = new ArrayList<>();
+    public ArrayList<Product> toList(Database database, ResultSet r) throws SQLException {
+        ArrayList<Product> products = new ArrayList<>();
         while (r.next())
             products.add(
                     new Product.Builder(r.getInt("id"))

@@ -10,8 +10,8 @@ import java.util.*;
 
 public class Addresses implements Table {
     @Override
-    public ArrayList<TableRow> toList(Database database, ResultSet r) throws SQLException {
-        ArrayList<TableRow> addresses = new ArrayList<>();
+    public ArrayList<Address> toList(Database database, ResultSet r) throws SQLException {
+        ArrayList<Address> addresses = new ArrayList<>();
         while (r.next())
             addresses.add(
                     new Address.Builder(r.getInt("id"))
