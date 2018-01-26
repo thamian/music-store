@@ -9,13 +9,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public interface Table {
-    public default ArrayList<TableRow> selectFrom(Database database, String sql) throws SQLException {
+    public default ArrayList<? extends TableRow> selectFrom(Database database, String sql) throws SQLException {
         Statement statement  = database.connection().createStatement();
-        ArrayList<TableRow> addresses = toList(database, statement.executeQuery(sql));
-        return addresses;
+        ArrayList<? extends TableRow> table = toList(database, statement.executeQuery(sql));
+        return table;
     }
 
-    public ArrayList<TableRow> toList(Database database, ResultSet r) throws SQLException;
+    public ArrayList<? extends TableRow> toList(Database database, ResultSet r) throws SQLException;
 
     public default int count(Database database, String sql, int id) throws SQLException {
         Statement statement  = database.connection().createStatement();

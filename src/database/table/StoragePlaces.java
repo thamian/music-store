@@ -10,8 +10,8 @@ import java.util.ArrayList;
 
 public class StoragePlaces implements Table {
     @Override
-    public ArrayList<TableRow> toList(Database database, ResultSet r) throws SQLException {
-        ArrayList<TableRow> storagePlaces = new ArrayList<>();
+    public ArrayList<StoragePlace> toList(Database database, ResultSet r) throws SQLException {
+        ArrayList<StoragePlace> storagePlaces = new ArrayList<>();
         while (r.next())
             storagePlaces.add(
                     new StoragePlace(r.getInt("id"), r.getString("name"))

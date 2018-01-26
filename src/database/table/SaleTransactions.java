@@ -1,6 +1,8 @@
 package database.table;
 
 import database.Database;
+import database.table.row.PurchaseTransaction;
+import database.table.row.PurchasedProduct;
 import database.table.row.SaleTransaction;
 import database.table.row.TableRow;
 
@@ -10,8 +12,8 @@ import java.util.ArrayList;
 
 public class SaleTransactions implements Table {
     @Override
-    public ArrayList<TableRow> toList(Database database, ResultSet r) throws SQLException {
-        ArrayList<TableRow> purchaseTransactions = new ArrayList<>();
+    public ArrayList<SaleTransaction> toList(Database database, ResultSet r) throws SQLException {
+        ArrayList<SaleTransaction> purchaseTransactions = new ArrayList<>();
         while (r.next())
             purchaseTransactions.add(
                     new SaleTransaction.Builder(r.getInt("id"))

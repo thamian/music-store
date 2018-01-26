@@ -24,8 +24,8 @@ public class ProductView {
 
         inventoryBalance = new SimpleStringProperty(String.valueOf(0));
 
-        float fPrice = product.getPrice() / 100;
-        price = new SimpleStringProperty(String.valueOf(fPrice));
+        float calculatedPrice = product.getPrice() / 100;
+        price = new SimpleStringProperty(String.valueOf(calculatedPrice));
     }
 
     public String getId() {

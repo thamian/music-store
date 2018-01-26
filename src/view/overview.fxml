@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="805.0" stylesheets="@style/bootstrap3.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.OverviewController">
+   <children>
+      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+            <Tab text="Produkty">
+               <content>
+                  <fx:include fx:id="products" source="products.fxml" />
+               </content>
+            </Tab>
+            <Tab text="Transakcje sprzedaży">
+                <content>
+                    <fx:include fx:id="saleTransactions" source="sale_transactions.fxml" />
+                </content>
+            </Tab>
+            <Tab text="Transakcje kupna">
+                <content>
+                    <fx:include fx:id="purchaseTransactions" source="purchase_transactions.fxml" />
+                </content>
+            </Tab>
+            <Tab text="Kategorie produktów">
+                <content>
+                    <fx:include fx:id="productCategories" source="product_categories.fxml" />
+                </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
